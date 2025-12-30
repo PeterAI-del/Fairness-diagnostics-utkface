@@ -1,5 +1,58 @@
-<<<<<<< HEAD
-# Baseline CNN Fairness Diagnostics (UTKFace)
+## Script D: Dataset Demographic Diagnostics (UTKFace)
+**File:** scripts/Subgroup_Aggregate_Metric_Age_Race_Gender.py
+**Branch:** dataset-demographic-diagnostic
+
+## Purpose
+This script performs a dataset-level demographic diagnostic to visualise representational imbalance across race, gender, and age in the UTKFace dataset prior to any model training or evaluation.
+
+The script is descriptive rather than predictive. It establishes structural conditions under which algorithmic bias may emerge, rather than measuring algorithmic performance.
+
+## Dataset Conditions
+Dataset: UTKFace (public academic dataset)
+Scope: Full dataset (23,705 images)
+
+Demographic attributes parsed from filename metadata:
+- age
+- binary gender
+- race (five-category label)
+- No train–validation split is applied
+- No modelling, optimisation, or prediction occurs
+
+Demographic labels are treated strictly as dataset annotations, not as socially or biologically definitive categories.
+
+## What This Script Does
+- Parses demographic metadata from UTKFace filenames
+- Quantifies and visualises:
+ - Race distribution (bar chart)
+ - Gender distribution (bar chart)
+ - Age distribution (histogram)
+- Produces descriptive figures illustrating dataset skew
+
+## What This Script Does NOT Claim
+This script does not:
+- Train or evaluate any machine learning model
+- Measure algorithmic bias or fairness outcomes
+- Attribute causality to observed demographic imbalance
+- Represent real-world population distributions
+- Assess ethical acceptability or deployment suitability
+
+## How This Script Supports the Report
+This script supports 
+> Methodology Section 3.3.2 (Visualisation of Demographic Imbalance) by providing empirical grounding for subsequent bias diagnostics.
+
+The figures produced here:
+- Demonstrate representational skew as a precondition for bias
+- Contextualise subgroup performance disparities observed in later scripts
+- Anchor fairness analysis in dataset structure rather than model behaviour alone
+
+The outputs correspond directly to:
+> Figures 3.1–3.3 — Dataset demographic distributions
+
+## Methodological Positioning
+This script operationalises a socio-technical framing of bias, treating dataset composition as an upstream governance and design issue rather than a downstream modelling defect.
+
+
+## Script A: Baseline CNN Fairness Diagnostics (UTKFace)
 **File:** `scripts/Baseline_CNN_ROC_Fairness_metrics.py`
 **Branch:** `baseline-cnn-fairness`
 
@@ -45,7 +98,7 @@ The script corresponds directly to:
 Results may vary slightly due to random initialisation and dataset shuffling. All preprocessing, splits, and evaluation metrics are explicitly defined in the script.
 
 
-## Script B — Gender Classification Pipeline  
+## Script B: Gender Classification Pipeline  
 **File:** `scripts/Gender_classification_pipeline.py`
 **Branch:** `gender-pipeline-diagnostics`
 
