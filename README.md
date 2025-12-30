@@ -1,32 +1,42 @@
-# Fairness-diagnostics-utkface
-Computational artefacts supporting a socio-technical analysis of algorithmic bias in facial classification. The repository contains diagnostic scripts demonstrating how aggregate performance metrics can obscure subgroup-level disparities under demographic imbalance.
-## Script D: Dataset-Level Demographic Imbalance Diagnostics
+# Baseline CNN Fairness Diagnostics (UTKFace)
 
-**File:** `scripts/Subgroup_Aggregate_Metric_Age_Race_Gender.py`  
-**Branch:** `dataset-demographic-diagnostics`
+## Purpose
+This script implements a capacity-limited baseline convolutional neural network (CNN) to illustrate how algorithmic bias can emerge under demographic imbalance and weak inductive assumptions.
 
-### Purpose
-This script provides descriptive, dataset-level diagnostics of demographic composition within the UTKFace dataset. It visualises race, gender, and age distributions across the full dataset to empirically demonstrate representational imbalance prior to any model training or evaluation.
+The script is **diagnostic rather than evaluative**. It does not seek to optimise performance or propose a deployable facial recognition system.
 
-The script establishes that observed subgroup disparities in later analyses are structurally prefigured by dataset composition rather than artefacts of model architecture or optimisation.
+## Dataset Conditions
+The script operates on the UTKFace dataset using filename-encoded demographic metadata (age, gender, race).  
+Only the `UTKFace/` directory is used. Images are not redistributed or uploaded to this repository.
 
-### Dataset Conditions
-- Full UTKFace dataset (23,705 images)
-- No train–validation split
-- No model training or inference
-- Demographic attributes parsed from filenames
-- Race, gender, and age treated as dataset annotations rather than ontological categories
+Demographic labels are treated as dataset annotations rather than ontological truths.
 
-### What This Script Does NOT Claim
-This script does **not**:
-- Evaluate model performance or fairness
-- Attribute bias to any specific algorithm
-- Infer causal relationships between demographics and outcomes
-- Assess deployment suitability or legal compliance
+## What This Script Does
+- Trains a simple CNN for binary gender classification
+- Computes aggregate accuracy and ROC/AUC
+- Evaluates subgroup performance disaggregated by:
+  - gender
+  - race
+  - age group
+- Visualises demographic distributions within the validation subset
 
-It is strictly descriptive and diagnostic.
+## What This Script Does NOT Claim
+- It does not claim real-world policing validity
+- It does not benchmark state-of-the-art performance
+- It does not infer causal sources of bias
+- It does not evaluate individual identity recognition
 
-### How This Script Supports the Report
-Script D supports **Methodology Section 3.3.2 (Visualisation of Demographic Imbalance)** by empirically grounding claims of representational skew. It provides the evidential basis for interpreting subgroup error asymmetries observed in subsequent baseline CNN and MobileNetV2 analyses.
+## How This Script Supports the Report
+This script supports the methodological claim that **aggregate performance metrics can conceal subgroup-specific error disparities**, particularly under demographically imbalanced conditions.
 
-By isolating dataset composition from modelling choices, the script reinforces the report’s central claim that algorithmic bias emerges from socio-technical pipelines rather than isolated technical defects.
+The results are used to:
+- establish a weak baseline
+- motivate architectural comparison
+- demonstrate evaluation blind spots discussed in the fairness literature
+
+The script corresponds directly to:
+> Methodology Section 3.3.3 — Model Training and Bias Illustration  
+> Figures 3.4, 3.6, 3.7, and 3.8
+
+## Reproducibility Notes
+Results may vary slightly due to random initialisation and dataset shuffling. All preprocessing, splits, and evaluation metrics are explicitly defined in the script.
